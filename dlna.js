@@ -28,7 +28,7 @@
           tree = {
             device: {
               name: server,
-              alias: serverName
+//              alias: serverName
             },
             tree: [{title:"/", id: 0}]
           };
