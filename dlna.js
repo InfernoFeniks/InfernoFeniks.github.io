@@ -27,8 +27,8 @@
           body.append(scroll.render(true));
           tree = {
             device: {
-              name: server,
-              address: serverName
+              name: serverName,
+              address: server
             },
             tree: [{title:"/", id: 0}]
           };
