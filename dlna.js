@@ -7,12 +7,12 @@
           body = html.find('.dlna_client-main__body');
       var listener_id, server, scroll, tree, image;
 // Получаем имя сервера из настроек
-      var serverName = Lampa.Storage.get('synology_dlna_server_name');
+//      var serverName = Lampa.Storage.get('synology_dlna_server_name');
 // Создаем объект tree с именем сервера
-      tree = {
-        device_name: {name: serverName}, // Используем имя сервера
-        tree: [{title:"/", id: 0}]
-      };
+//      tree = {
+//        device: {name: serverName}, // Используем имя сервера
+//        tree: [{title:"/", id: 0}]
+//      };
 
       this.create = function () {
         this.activity.loader(true);
@@ -26,7 +26,10 @@
           scroll.minus(head);
           body.append(scroll.render(true));
           tree = {
-            device: {name: server},
+            device: {
+              name: server,
+              address: serverName
+            },
             tree: [{title:"/", id: 0}]
           };
           this.displayFolder();
@@ -160,7 +163,7 @@
         var device_item = document.createElement('div');
         device_item.addClass('dlna_client-head__device');
         var icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewBox=\"0 0 128 128\" xml:space=\"preserve\">\n                <path d=\"M111.7 57.1V22.2c0-1.1-.5-2.3-1.4-2.9h-.1c-.6-.4-1.2-.6-2-.6H30.9c-2 0-3.5 1.5-3.5 3.5v31.9h34.9c2.8 0 5.1 2.4 5.1 5.2v15.5h27.5V61.4c0-2.4 1.9-4.2 4.2-4.2h12.6z\" fill=\"currentColor\"></path>\n                <path d=\"M96.8 67.6H128v33.2H96.8zM67.3 86.1h27.5v-9.2H67.3zM65.1 59.3c0-1.8-1.3-3.1-3-3.1h-56c-1.7 0-3 1.4-3 3.1v41.9h62zM0 106.1c0 1.7 1.3 3.1 3.1 3.1h62.2c1.7 0 3.1-1.3 3.1-3.1v-2.9H0zM125.8 59.3H99c-1.2 0-2.2.9-2.2 2.2v4.1H128v-4.1c0-1.3-.9-2.2-2.2-2.2zm-9.4 4.1h-7.9c-.6 0-1-.4-1-1s.4-1 1-1h7.9c.6 0 1 .4 1 1 .1.6-.3 1-1 1zm3.8 0h-.4c-.6 0-1-.4-1-1s.4-1 1-1h.4c.6 0 1 .4 1 1s-.4 1-1 1zM96.8 107.1c0 1.2.9 2.2 2.2 2.2h26.8c1.2 0 2.2-1 2.2-2.2V103H96.8zm11.6-2h7.9c.6 0 1 .4 1 1s-.4 1-1 1h-7.9c-.6 0-1-.4-1-1s.4-1 1-1zM81.7 93.7H78v-5.6H67.3v7.6h14.3c.6 0 1-.4 1-1 .1-.6-.3-1-.9-1z\" fill=\"currentColor\"></path>\n            </svg>";
-        icon += '<span>' + tree.device_name.name + '</span>';
+        icon += '<span>' + tree.device.name + '</span>';
         device_item.html(icon);
         nav.push(device_item);
         tree.tree.forEach(function (folder) {
@@ -194,7 +197,7 @@
         var folder = tree.tree[tree.tree.length - 1];
         this.drawLoading(Lampa.Lang.translate('loading'));
 
-        var serviceURL = device.name + (device.name.endsWith('/') ? '' : '/') + 'ContentDirectory/control';
+        var serviceURL = device.address + (device.name.endsWith('/') ? '' : '/') + 'ContentDirectory/control'; //device.name
         if (serviceURL.indexOf('http') === -1) serviceURL = 'http://' + serviceURL;
 
         serviceURL = this.getProxyURL(serviceURL);
