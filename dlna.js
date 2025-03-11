@@ -367,7 +367,7 @@
             type: 'input', //доступно select,input,trigger,title,static
             placeholder: '',
             values: '',
-            default: ''
+            default: '192.168.100.11:8200'
           },
           field: {
             name: 'Адрес и порт DLNA сервера',
