@@ -197,7 +197,7 @@
         var folder = tree.tree[tree.tree.length - 1];
         this.drawLoading(Lampa.Lang.translate('loading'));
 
-        var serviceURL = device.address + (device.name.endsWith('/') ? '' : '/') + 'ContentDirectory/control'; //device.name
+        var serviceURL = device.address + (device.address.endsWith('/') ? '' : '/') + 'ContentDirectory/control'; //device.name
         if (serviceURL.indexOf('http') === -1) serviceURL = 'http://' + serviceURL;
 
         serviceURL = this.getProxyURL(serviceURL);
