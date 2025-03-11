@@ -6,13 +6,13 @@
           head = html.find('.dlna_client-main__head'),
           body = html.find('.dlna_client-main__body');
       var listener_id, server, scroll, tree, image;
-## NAME
-      var serverName = Lampa.Storage.get('synology_dlna_server_name') || "Мой DLNA сервер";
+// NAME
+      var serverName = Lampa.Storage.get('synology_dlna_server_name');
       tree = {
         device: { name: serverName },
         tree: [{ title: "/", id: 0 }]
       };
-
+// NAME
       this.create = function () {
         this.activity.loader(true);
         server = Lampa.Storage.get('synology_dlna_server');
@@ -380,12 +380,12 @@
             description: 'Например, 192.168.100.11:8200'
           }
         });
-##
+// synology_dlna_server_name
         Lampa.SettingsApi.addParam({
           component: 'synology_dlna_client_config',
           param: {
             name: 'synology_dlna_server_name',
-            type: 'input',
+            type: 'input', //доступно select,input,trigger,title,static
             placeholder: '',
             values: '',
             default: 'MiniDLNA'
@@ -395,7 +395,7 @@
             description: 'Введите имя DLNA сервера'
           }
         });
-##
+
         Lampa.SettingsApi.addParam({
           component: 'synology_dlna_client_config',
           param: {
