@@ -13,7 +13,7 @@
         device: {name: serverName}, // Используем имя сервера
         tree: [{title:"/", id: 0}]
       };
-// NAME
+
       this.create = function () {
         this.activity.loader(true);
         server = Lampa.Storage.get('synology_dlna_server');
@@ -182,10 +182,10 @@
         }
       };
 // Метод для обновления имени сервера
-      this.updateServerName = function (newName) {
-        tree.device.name = newName;
-        this.drawHead(); // Перерисовываем заголовок
-      };
+//      this.updateServerName = function (newName) {
+//        tree.device.name = newName;
+//        this.drawHead(); // Перерисовываем заголовок
+//      };
 
       this.displayFolder = function () {
         var _this3 = this;
