@@ -6,11 +6,11 @@
           head = html.find('.dlna_client-main__head'),
           body = html.find('.dlna_client-main__body');
       var listener_id, server, scroll, tree, image;
-// NAME
+// serverName
       var serverName = Lampa.Storage.get('synology_dlna_server_name');
       tree = {
-        device: { name: serverName },
-        tree: [{ title: "/", id: 0 }]
+        device: {name: serverName},
+        tree: [{title:"/", id: 0}]
       };
 // NAME
       this.create = function () {
