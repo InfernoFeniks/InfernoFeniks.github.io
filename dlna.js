@@ -26,10 +26,11 @@
           scroll.minus(head);
           body.append(scroll.render(true));
           tree = {
-            device: {
-              name: server,
+            device: { name: server },
+//            device: {
+//              name: server,
 //              alias: serverName
-            },
+//            },
             tree: [{title:"/", id: 0}]
           };
           this.displayFolder();
