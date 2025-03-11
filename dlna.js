@@ -6,10 +6,11 @@
           head = html.find('.dlna_client-main__head'),
           body = html.find('.dlna_client-main__body');
       var listener_id, server, scroll, tree, image;
-// serverName
+// Получаем имя сервера из настроек
       var serverName = Lampa.Storage.get('synology_dlna_server_name');
+// Создаем объект tree с именем сервера
       tree = {
-        device: {name: serverName},
+        device: {name: serverName}, // Используем имя сервера
         tree: [{title:"/", id: 0}]
       };
 // NAME
@@ -25,7 +26,7 @@
           scroll.minus(head);
           body.append(scroll.render(true));
           tree = {
-            device: {name: serverName}, //server
+            device: {name: server},
             tree: [{title:"/", id: 0}]
           };
           this.displayFolder();
@@ -179,6 +180,11 @@
 
           head.append(nav[i]);
         }
+      };
+// Метод для обновления имени сервера
+      this.updateServerName = function (newName) {
+        tree.device.name = newName;
+        this.drawHead(); // Перерисовываем заголовок
       };
 
       this.displayFolder = function () {
