@@ -371,7 +371,7 @@
           },
           field: {
             name: 'Адрес и порт DLNA сервера',
-            description: 'Например, 192.168.1.5:50001'
+            description: 'Например, 192.168.100.11:8200'
           }
         });
         Lampa.SettingsApi.addParam({
